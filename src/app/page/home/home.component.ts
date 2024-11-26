@@ -11,50 +11,67 @@ export class HomeComponent implements OnInit {
 
   constructor(private service:ApiservicesService) { }
 
-  categoryList:any = ['all','hosting','ecommerce','finance','course','product','travel'];
-  showAllData:any=[];
-  filterName:any;
-  filterData:any=[];
-  showData:any;
+  // Kategori listesi, kullanıcıların seçim yapabileceği kategoriler
+categoryList: any = ['all', 'hosting', 'ecommerce', 'finance', 'course', 'product', 'travel'];
 
-  ngOnInit(): void {
-   this.homeData();
-  }
+// API'den alınan tüm veriler burada saklanacak
+showAllData: any = [];
 
-  homeData()
-  {
-    this.service.homeapi().subscribe((result)=>{
-      console.log(result,'result#');
-      if(result.length>0)
-      {
-        this.showAllData = result;
-        this.showData = true;
-      }
-    });
-  }
+// Kullanıcının seçtiği kategori
+filterName: any;
 
-  onChange(e:any){
-    console.log(e.target.value,'categoryvalue');
-    this.showData=false;
-    this.filterName = e.target.value;
-    this.filterData=[];
+// Seçilen kategoriye göre filtrelenmiş veriler
+filterData: any = [];
 
-    this.showAllData.filter((element:any)=>{
-      if(this.filterName=='All')
-      {
+// Verilerin ekranda görüntülenip görüntülenmeyeceğini kontrol eden bayrak değişkeni
+showData: any;
+
+ngOnInit(): void {
+  // Bileşen yüklendiğinde ilk olarak homeData() fonksiyonunu çağırır
+  this.homeData();
+}
+
+// API'den veri çeken fonksiyon
+homeData() {
+  // Servis aracılığıyla API çağrısı yapılır
+  this.service.homeapi().subscribe((result) => {
+    console.log(result, 'result#'); // Gelen veriler konsola yazdırılır
+    if (result.length > 0) {
+      // API'den gelen veri varsa, tüm veri showAllData'ya atanır
+      this.showAllData = result;
+      // Verilerin görüntülenmesi için bayrak değişkeni true yapılır
+      this.showData = true;
+    }
+  });
+}
+
+// Kategori değiştiğinde çağrılan fonksiyon
+onChange(e: any) {
+  console.log(e.target.value, 'categoryvalue'); // Seçilen kategori konsola yazdırılır
+
+  // Yeni kategori seçildiği için başlangıçta veriler gizlenir
+  this.showData = false;
+
+  // Kullanıcının seçtiği kategori değeri alınır
+  this.filterName = e.target.value;
+
+  // Filtreleme yapılacağı için filterData boşaltılır
+  this.filterData = [];
+
+  // Tüm verilerde dolaşarak seçilen kategoriye uygun olanları filtreler
+  this.showAllData.filter((element: any) => {
+    // Eğer "All" seçildiyse tüm veriler filtreye eklenir
+    if (this.filterName == 'All') {
+      this.filterData.push(element);
+    } else {
+      // Seçilen kategoriye uygun olan veriler filtreye eklenir
+      if (element.category == this.filterName.toLowerCase()) {
         this.filterData.push(element);
       }
-      else{
-        if(element.category == this.filterName.toLowerCase())
-          {
-            this.filterData.push(element);
-          }
-      }
+    }
+  });
 
-      
-    });
-
-    console.log(this.filterData,'filterData##');
-  }
-
+  // Filtrelenen veriler konsola yazdırılır
+  console.log(this.filterData, 'filterData##');
+}
 }

@@ -1,49 +1,71 @@
 <div class="container-fluid">
+    <!-- Sayfanın başlık kısmı -->
     <header>
-        <h1>myaffiliatewebsites</h1>
+        <h1>myaffiliatewebsites</h1> 
     </header>
 
-    <!--Category List-->
+    <!-- Kategori Seçim Alanı -->
     <div class="col-sm-2 mt-4 mb-3">
-        <span>Select Category</span>
+        <span>Select Category</span> 
+        
+        <!-- Dropdown (açılır menü) ile kategori seçimi -->
         <select class="form-select" aria-label="Default select example" (change)="onChange($event)">
+            <!-- categoryList dizisindeki her öğe için bir <option> etiketi oluşturulur -->
             <option *ngFor="let cl of categoryList">{{cl | titlecase}}</option>
         </select>
     </div>
 
-    <!--show data-->
+    <!-- Verilerin gösterileceği alan -->
     <div class="row">
 
+        <!-- showData değişkenine bağlı olarak allData veya filter template'i gösterilecek -->
         <div *ngIf="showData; then allData else filter"></div>
 
+        <!-- Eğer showData true ise (yani tüm veriler gösterilecekse) allData template'i gösterilir -->
         <ng-template #allData>
+            <!-- showAllData dizisindeki her öğe için bir kutu oluşturulur -->
             <div class="col-lg-3 col-12 mt-3 mb-3" *ngFor="let item of showAllData">
+                <!-- Bağlantı, her öğenin URL'sine yönlendirecek şekilde oluşturulur -->
                 <a href="{{item.url}}" target="_blank">
                     <div class="box">
+                        <!-- Öğe ismi, titlecase ile baş harfleri büyük yapılır -->
                         <h2>{{item.name | titlecase}}</h2>
-                        <p><span><i class="bi bi-tag"></i>{{item.category | titlecase}}</span> | <span><i class="bi bi-back"></i> {{item.type | titlecase}}</span> </p>
+                        
+                        <!-- Öğe kategorisi ve tipi gösterilir, titlecase ile biçimlendirilir -->
+                        <p>
+                            <span><i class="bi bi-tag"></i>{{item.category | titlecase}}</span> | 
+                            <span><i class="bi bi-back"></i> {{item.type | titlecase}}</span> 
+                        </p>
+                        
+                        <!-- "Visit site" yazısı ve sağ ok simgesi -->
                         <p>visit site <i class="bi bi-arrow-right"></i></p>
                     </div>
                 </a>
             </div>
         </ng-template>
 
+        <!-- Eğer showData false ise (yani filtrelenmiş veriler gösterilecekse) filter template'i gösterilir -->
         <ng-template #filter>
+            <!-- filterData dizisindeki her öğe için bir kutu oluşturulur -->
             <div class="col-lg-3 col-12 mt-3 mb-3" *ngFor="let item of filterData">
+                <!-- Bağlantı, her öğenin URL'sine yönlendirecek şekilde oluşturulur -->
                 <a href="{{item.url}}" target="_blank">
                     <div class="box">
+                        <!-- Öğe ismi, titlecase ile baş harfleri büyük yapılır -->
                         <h2>{{item.name | titlecase}}</h2>
-                        <p><span><i class="bi bi-tag"></i>{{item.category | titlecase}}</span> | <span><i class="bi bi-back"></i> {{item.type | titlecase}}</span> </p>
+                        
+                        <!-- Öğe kategorisi ve tipi gösterilir, titlecase ile biçimlendirilir -->
+                        <p>
+                            <span><i class="bi bi-tag"></i>{{item.category | titlecase}}</span> | 
+                            <span><i class="bi bi-back"></i> {{item.type | titlecase}}</span> 
+                        </p>
+                        
+                        <!-- "Visit site" yazısı ve sağ ok simgesi -->
                         <p>visit site <i class="bi bi-arrow-right"></i></p>
                     </div>
                 </a>
             </div>
         </ng-template>
-
-
-
-       
 
     </div>
-
 </div>

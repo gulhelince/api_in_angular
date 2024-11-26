@@ -1,55 +1,63 @@
+/* Header bölümünün stilini belirliyoruz */
 header
 {
-    background-image: url('../../../assets/headerimg.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 900px;
-    margin: 0% 0%;
-    border-radius: 5px;
+    background-image: url('../../../assets/headerimg.jpg'); /* Header arka planına resim ekliyoruz */
+    background-position: center; /* Arka planın merkezde hizalanmasını sağlıyoruz */
+    background-size: cover; /* Arka planın tüm alanı kaplamasını sağlıyoruz */
+    background-repeat: no-repeat; /* Arka planın tekrarlanmamasını sağlıyoruz */
+    height: 900px; /* Header'ın yüksekliğini 900px olarak ayarlıyoruz */
+    margin: 0% 0%; /* Header'ın dış kenar boşluklarını sıfırlıyoruz */
+    border-radius: 5px; /* Header'a 5px'lik yuvarlatılmış köşe ekliyoruz */
 }
 
+/* Header içindeki başlık (h1) stilini belirliyoruz */
 header h1
 {
-    font-size: 50px;
-    text-align: center;
-    padding: 32% 0%;
-    color: #ffffff;
-    font-weight: bold;
+    font-size: 50px; /* Başlığın yazı boyutunu 50px olarak ayarlıyoruz */
+    text-align: center; /* Başlığı ortalıyoruz */
+    padding: 32% 0%; /* Başlığın üst ve altındaki boşlukları ayarlıyoruz */
+    color: #ffffff; /* Başlık yazı rengini beyaz yapıyoruz */
+    font-weight: bold; /* Başlığı kalın (bold) yapıyoruz */
 }
 
+/* .row sınıfı içindeki elemanların margin (kenar boşluğu) ayarlarını yapıyoruz */
 .row
 {
-    margin: 30px 50px;
+    margin: 30px 50px; /* Row elemanlarının üst-alt ve sağ-sol kenar boşluklarını ayarlıyoruz */
 }
 
+/* .box sınıfındaki kutuların stilini belirliyoruz */
 .box
 {
-    border: 1px solid #053867;
-    border-radius: 5px;
-    padding: 20px;
+    border: 1px solid #053867; /* Kutunun etrafına 1px'lik mavi renkli bir sınır ekliyoruz */
+    border-radius: 5px; /* Kutunun köşelerini yuvarlatıyoruz */
+    padding: 20px; /* Kutunun içindeki boşlukları 20px olarak ayarlıyoruz */
 }
 
+/* Linklerin (a etiketi) stilini belirliyoruz */
 a
 {
-    text-decoration: none;
-    color: #053867;
+    text-decoration: none; /* Linklerin altını çizmiyoruz */
+    color: #053867; /* Linklerin yazı rengini mavi yapıyoruz */
 }
 
+/* .box sınıfındaki kutuya hover (üzerine gelme) efekti ekliyoruz */
 .box:hover
 {
-    color: #ffffff;
-    background-color: #053867;
-    transition: 0.3s;
-    cursor: pointer;
+    color: #ffffff; /* Hover durumunda kutunun yazı rengini beyaz yapıyoruz */
+    background-color: #053867; /* Hover durumunda kutunun arka plan rengini mavi yapıyoruz */
+    transition: 0.3s; /* Hover efekti 0.3 saniyede gerçekleşir */
+    cursor: pointer; /* Kullanıcı fareyi kutunun üzerine getirdiğinde pointer (işaretçi) şekli gösterilir */
 }
 
+/* Ekran genişliği 600px'den küçük olan cihazlar için özel stil ayarları */
 @media screen and (max-width:600px){
-
+    
+    /* Header içindeki başlığın stilini küçültüyoruz */
     header h1
     {
-        font-size: 35px;
-        padding: 100% 0%;
+        font-size: 35px; /* Başlık yazı boyutunu 35px yapıyoruz */
+        padding: 100% 0%; /* Başlığın üst ve altındaki boşlukları %100 oranında artırıyoruz */
     }
     
 }
